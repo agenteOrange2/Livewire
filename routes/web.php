@@ -37,3 +37,6 @@ Route::group(['middleware' => ['auth:sanctum', config('jetstream.auth_session'),
 });
     
 
+Route::get('/contact', App\Livewire\Contact\General::class)->name('contact');
+Route::get('/person', App\Livewire\Contact\Person::class)->name('person');
+Route::get('/company', App\Livewire\Contact\Company::class)->name('company');

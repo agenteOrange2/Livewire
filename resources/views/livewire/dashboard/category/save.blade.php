@@ -1,64 +1,66 @@
-<div class="p-5">
+<div>
 
+    <div class="container">
 
-    <x-action-message on="created">
-        {{ __('Created Category Success') }}
-    </x-action-message>
-
-    <x-action-message on="updated">
-        {{ __('Updated Category Success') }}
-    </x-action-message>
-
-
-
-    <x-form-section submit='submit' wire:submit.prevent="submit">
-
-        <x-slot name="title">
-            {{ __('Category') }}
-        </x-slot>
-
-        <x-slot name="description">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi aliquid tenetur dolor cupiditate temporibus?
-            Ut tempore accusantium doloribus ipsa saepe repellat ex mollitia harum. Repudiandae, non deleniti. Sed,
-            nesciunt laboriosam.
-        </x-slot>
-
-
-        @slot('form')
-            <div class="col-span-6 sm:col-span-6">
-                @error('title')
-                    {{ $message }}
-                @enderror
-                <x-label for="">Title</x-label>
-                <x-input class="mt-1 block w-full" type="text" wire:model.live="title" />
+        <x-action-message on="created">
+            <div class="box-action-message">
+                {{ __('Created category success') }}
             </div>
+        </x-action-message>
 
-            <div class="col-span-6 sm:col-span-6">
-                @error('text')
-                    {{ $message }}
-                @enderror
-                <x-label for="">Text</x-label>
-                <x-input class="mt-1 block w-full" type="text" wire:model="text" />
+        <x-action-message on="updated">
+            <div class="box-action-message">
+                {{ __('Updated category success') }}
             </div>
+        </x-action-message>
 
 
-            <div class="col-span-6 sm:col-span-6">
-                @error('image')
-                    {{ $message }}
-                @enderror
+        <x-form-section submit='submit'>
 
-                @if ($category && $category->image)
-                    <img class="w-40 my-3" src="{{ $category->getImageURL() }}" alt="{{ $category->title }}">
-                @endif
-                <x-label for="">Image</x-label>
-                <x-input class="mt-1 block w-full" type="file" wire:model="image" />
-            </div>
+            <x-slot name="title">
+                {{ __('Category') }}
+            </x-slot>
 
+            <x-slot name="description">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque hic voluptates quaerat accusantium a. Est
+                voluptate voluptatibus necessitatibus a non iure rerum, nesciunt nisi assumenda quaerat nam incidunt ab.
+                Facilis.
+            </x-slot>
 
-        @endslot
+            @slot('form')
 
-        @slot('actions')
-            <x-button type="submit">Enviar</x-button>
-        @endslot
-    </x-form-section>
+                <div class="col-span-10 sm:col-span-3">
+                    <x-label for="">Title</x-label>
+                    <x-input type="text" wire:model.live='title' class="w-full" />
+                    @error('title')
+                        {{ $message }}
+                    @enderror
+                </div>
+
+                <div class="col-span-10 sm:col-span-3">
+                    <x-label for="">Text</x-label>
+                    <x-input type="text" wire:model='text' class="w-full" />
+                    @error('text')
+                        {{ $message }}
+                    @enderror
+                </div>
+
+                <div class="col-span-10 sm:col-span-3">
+                    <x-label for="">Image</x-label>
+                    <x-input type="file" wire:model='image' class="w-full" />
+                    @error('image')
+                        {{ $message }}
+                    @enderror
+
+                    @if ($category && $category->image)
+                        <img class="w-40 my-3" src="{{ $category->getImageUrl() }}" alt="{{ $category->title }}">
+                    @endif
+                </div>
+            @endslot
+
+            @slot('actions')
+                <x-button type="submit">Send</x-button>
+            @endslot
+        </x-form-section>
+    </div>
 </div>

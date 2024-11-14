@@ -19,6 +19,7 @@
                     <x-nav-link href="{{ route('d-category-index') }}" :active="request()->routeIs('d-category-index')">
                         {{ __('Category') }}
                     </x-nav-link>
+                    
                 </div>
             </div>
 
@@ -126,6 +127,24 @@
                         </x-slot>
                     </x-dropdown>
                 </div>
+
+                <div class="ms-3 relative">
+                    <x-dropdown>
+                        <x-slot name="trigger">
+                            {{__('Manage CRUD')}}
+                        </x-slot>
+                        <x-slot name="content">
+                            <div class="bloc px-4 text-sm text-gray-400">
+                                <x-dropdown-link href="{{route('d-category-index')}}">
+                                    {{__('Category')}}
+                                </x-dropdown-link>
+                                <x-dropdown-link href="{{route('d-post-index')}}">
+                                    {{__('Post')}}
+                                </x-dropdown-link>
+                            </div>
+                        </x-slot>
+                    </x-dropdown>
+                </div>
             </div>
 
             <!-- Hamburger -->
@@ -146,6 +165,11 @@
             <x-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+
+            <x-responsive-nav-link href="{{ route('d-category-index') }}" :active="request()->routeIs('d-category-index')">
+                {{ __('Category') }}
+            </x-responsive-nav-link>
+
         </div>
 
         <!-- Responsive Settings Options -->
