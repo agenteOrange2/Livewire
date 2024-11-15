@@ -4,7 +4,10 @@ namespace App\Livewire\Contact;
 
 use Livewire\Component;
 use App\Models\ContactCompany;
+use Livewire\Attributes\Layout;
 
+
+#[Layout('layouts.contact')]
 class Company extends Component
 {
 
@@ -14,13 +17,15 @@ class Company extends Component
     public $extra;
     public $choices;
 
+
+    /*
     protected $rules = [
         'name' => 'required',
         'identification' => 'required',
         'email' => 'required|email',
         'extra' => 'required',
         'choices' => 'required',
-    ];    
+    ];    */
 
 
     public function render()
@@ -30,13 +35,16 @@ class Company extends Component
 
     function submit()
     {
-        $this->validate();
+        /*$this->validate();
         ContactCompany::create([
             'name' => $this->name,
-            'identification' => $this->identification,
             'email' => $this->email,
+            'identification' => $this->identification,
             'extra' => $this->extra,
             'choices' => $this->choices,
-        ]);
+            'contact_general_id' => 1,
+        ]);*/
+
+
     }
 }

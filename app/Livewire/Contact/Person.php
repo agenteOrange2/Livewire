@@ -4,6 +4,7 @@ namespace App\Livewire\Contact;
 
 use Livewire\Component;
 use App\Models\ContactPerson;
+use Livewire\Attributes\Layout;
 use Livewire\Attributes\Validate;
 
 class Person extends Component
@@ -16,12 +17,14 @@ class Person extends Component
     public $other;
 
     protected $rules = [
-        'name' => 'required|min:3|max:255',
-        'surname' => 'required|min:3|max:255',
+        'name' => 'required|min:2|max:255',
+        'surname' => 'required|min:2|max:255',
         'choices' => 'required',
-        'other' => 'nullable'
+        'other' => 'nullable',
     ];
 
+    #[Layout('layouts.contact')]
+    
     public function render()
     {
         return view('livewire.contact.person');
@@ -29,6 +32,7 @@ class Person extends Component
 
     function submit()
     {
+        /*
         $this->validate();
         ContactPerson::create([
             'name' => $this->name,
@@ -37,5 +41,6 @@ class Person extends Component
             'contact_general_id' => 1,
             'other' => $this->other
         ]);
+        */
     }
 }

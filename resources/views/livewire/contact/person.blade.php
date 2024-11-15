@@ -19,9 +19,9 @@
         <option value="other">{{__('Other')}}</option>
       </select>
 
-      <x-label>{{__('Message')}}</x-label>   
-      <x-input-error for="message"/>      
-      <textarea wire:model="message"></textarea>
+      <x-label>{{__('Other')}}</x-label>   
+      <x-input-error for="other"/>      
+      <textarea wire:model="other"></textarea>
 
       <x-button type="submit">{{__('Send')}}</x-button>
       
