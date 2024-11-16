@@ -10,12 +10,23 @@ use Livewire\Attributes\Validate;
 #[Layout('layouts.contact')]
 class Detail extends Component
 {
+
     #[Validate('required|min:2|max:255')]
     public $extra;
+
+    public $parentId;
+    
+    protected $listeners = ['parentId'];
+
+    function parentId($parentId)
+    {
+        $this->parentId = $parentId;
+    }
 
     // protected $rules = [
     //     'extra' => 'required',
     // ];    
+
 
     public function render()
     {
@@ -24,10 +35,17 @@ class Detail extends Component
 
     function submit()
     {
+        
         $this->validate();
-        ContactDetail::create([
+        ContactDetail::updateOrCreate(
+            [
+                'contact_general_id' => $this->parentId
+            ],
+            [
             'extra' => $this->extra,
             'contact_general_id' => 1,            
-        ]);        
+        ]);
+        
+        $this->dispatch('stepEvent', 4);
     }
 }

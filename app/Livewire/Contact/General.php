@@ -11,22 +11,24 @@ class General extends Component
 {
 
     //Validacion a nivel propiedad
-    #[Validate('required|min:2|max:255')]
+    /*#[Validate('required|min:2|max:255')]*/
     public $subject;
-    #[Validate('required')]
+    /*#[Validate('required')]*/
     public $type;
-    #[Validate('required|min:2')]
+    /*#[Validate('required|min:2')]*/
     public $message;
 
 
     public $step = 1;
+    public $pk;
 
-    //Implementar validaciones
-    /*protected $rules = [
-        'subject' => 'required|min:2|max:255',
-        'type' => 'required',
-        'message' => 'nullable|min:2'
-    ];*/    
+    protected $listeners = ['stepEvent' => 'stepEvent']; // Escucha el evento 'stepEvent'
+
+    function stepEvent(int $step)
+    {
+        $this->step = $step;
+        $this->dispatch('parentId', $this->pk);
+    }
 
     public function render()
     {
@@ -35,20 +37,28 @@ class General extends Component
 
     function submit()
     {
+
+        // $this->validate();
         /*
-        $this->validate();
-
-        ContactGeneral::create([
-            'subject' => $this->subject,
-            'type' => $this->type,
-            'message' => $this->message
-        ]);*/
-
-        if($this->type=='company'){
-            $this->step = 2;
-        }else if($this->type== 'person'){
-            $this->step = 2.5;
+        if ($this->pk) {
+            ContactGeneral::where('id', $this->pk)->update([
+                'subject' => $this->subject,
+                'type' => $this->type,
+                'message' => $this->message,
+            ]);
+        } else {
+            $this->pk = ContactGeneral::create([
+                'subject' => $this->subject,
+                'type' => $this->type,
+                'message' => $this->message,
+            ])->id;            
         }
 
+        if ($this->type == 'company') {
+            $this->step = 2;
+        } else if ($this->type == 'person') {
+            $this->step = 2.5;
+        }
+        */        
     }
 }
