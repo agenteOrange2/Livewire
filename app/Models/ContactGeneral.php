@@ -15,12 +15,10 @@ class ContactGeneral extends Model
     {
         return $this->hasOne(ContactPerson::class);
     }
-
     public function company()
     {
         return $this->hasOne(ContactCompany::class);
     }
-
     public function detail()
     {
         return $this->hasOne(ContactDetail::class);

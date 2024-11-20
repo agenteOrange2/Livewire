@@ -19,6 +19,10 @@
                     <x-nav-link href="{{ route('d-category-index') }}" :active="request()->routeIs('d-category-index')">
                         {{ __('Category') }}
                     </x-nav-link>
+
+                    <x-nav-link href="{{ route('d-post-index') }}" :active="request()->routeIs('d-post-index')">
+                        {{ __('Post') }}
+                    </x-nav-link>
                     
                 </div>
             </div>
@@ -168,6 +172,10 @@
 
             <x-responsive-nav-link href="{{ route('d-category-index') }}" :active="request()->routeIs('d-category-index')">
                 {{ __('Category') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link href="{{ route('d-post-index') }}" :active="request()->routeIs('d-post-index')">
+                {{ __('Post') }}
             </x-responsive-nav-link>
 
         </div>

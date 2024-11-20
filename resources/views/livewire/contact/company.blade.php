@@ -1,5 +1,5 @@
 <div>
-    <form wire:submit.prevent="submit">
+    <form wire:submit.prevent="submit" class="flex flex-col max-w-sm mx-auto">
       <x-label>{{__('name')}}</x-label>   
       <x-input-error for="name"/>
       <x-input type="text" wire:model="name" />
@@ -30,7 +30,12 @@
       <textarea wire:model="extra"></textarea>
 
 
-      <x-button type="submit">{{__('Send')}}</x-button>
+
+      <div class="flex mt-5 gap-3">
+        <x-button type="submit">{{__('Send')}}</x-button>
+      
+        <x-secondary-button wire:click="back">Atras</x-secondary-button>
+        </div>
       
     </form>
 </div>

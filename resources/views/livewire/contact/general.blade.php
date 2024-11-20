@@ -24,14 +24,14 @@
     </div>
 
     @if ($step == 1)
-        <form wire:submit.prevent="submit">
+        <form wire:submit.prevent="submit" class="flex flex-col max-w-sm mx-auto">
             <x-label>{{ __('Subject') }}</x-label>
             <x-input-error for="subject" />
             <x-input type="text" wire:model="subject" />
 
             <x-label>{{ __('Type') }}</x-label>
-            <x-input-error for="type" />
-            <select wire:model="type">
+            <x-input-error for='type' />
+            <select wire:model='type'>
                 <option value=""></option>
                 <option value="person">{{ __('Person') }}</option>
                 <option value="company">{{ __('Company') }}</option>
@@ -41,15 +41,17 @@
             <x-input-error for="message" />
             <textarea wire:model="message"></textarea>
 
-            <x-button type="submit">{{ __('Send') }}</x-button>
+            <div class="flex mt-5 gap-3">
+                <x-button type="submit">{{ __('Send') }}</x-button>
+            </div>
 
         </form>
     @elseif ($step == 2)
-        @livewire('contact.company')
+        @livewire('contact.company', ['parentId' => $pk])
     @elseif ($step == 2.5)
-        @livewire('contact.person')
+        @livewire('contact.person', ['parentId' => $pk])
     @elseif ($step == 3)
-        @livewire('contact.detail')
+        @livewire('contact.detail', ['parentId' => $pk])
     @else
         END
     @endif
