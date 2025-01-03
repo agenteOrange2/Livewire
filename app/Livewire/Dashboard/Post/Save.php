@@ -2,36 +2,38 @@
 
 namespace App\Livewire\Dashboard\Post;
 
+use App\Models\Category;
 use App\Models\Post;
 use Livewire\Component;
 
 class Save extends Component
 {
+
     public $title;
     public $description;
     public $text;
     public $type;
     public $posted;
     public $category_id;
-    public $mage;
+    public $image;
     public $date;
 
     public $post;
 
     public function render()
     {
-        return view('livewire.dashboard.post.save');
+        $categories = Category::get();
+        return view('livewire.dashboard.post.save', compact('categories'));
     }
 
     protected $rules = [
-        'title' => 'required',
-        'description' => 'required',
-        'text' => 'required',
-        'type' => 'required',
-        'posted' => 'required',
-        'category_id' => 'required',
-        'mage' => 'required',
+        'title' => 'required|min:2|max:255',
+        'description' => 'required|min:2|max:255',
         'date' => 'required',
+        'category_id' => 'required',
+        'posted' => 'required',
+        'text' => 'required|min:2|max:5000',
+        'image' => 'nullable|image|max:1024'
     ];
 
     function mount(?int $id = null)
@@ -39,11 +41,11 @@ class Save extends Component
         if ($id != null) {
             $this->post = Post::findOrFail($id);
             $this->title = $this->post->title;
-            $this->description = $this->post->description;
             $this->text = $this->post->text;
             $this->category_id = $this->post->category_id;
             $this->posted = $this->post->posted;
-            $this->type = $this->post->description;
+            $this->type = $this->post->type;
+            $this->description = $this->post->description;
             $this->date = $this->post->date;
         }
     }
@@ -63,7 +65,6 @@ class Save extends Component
                     'type' => $this->type,
                     'posted' => $this->posted,
                     'slug' => str($this->title)->slug(),
-
                 ]
             );
             $this->dispatch('updated');
@@ -83,9 +84,8 @@ class Save extends Component
             $this->dispatch('created');
         }
 
-        //Upload
-        if($this->image)
-        {
+        // upload
+        if ($this->image) {
             $imageName = $this->post->slug . '.' . $this->image->getClientOriginalExtension();
             $this->image->storeAs('images/post', $imageName, 'public_upload');
 

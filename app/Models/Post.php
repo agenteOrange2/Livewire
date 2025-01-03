@@ -9,18 +9,21 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Post extends Model
 {
     use HasFactory;
-    
+
     protected $fillable = ['title', 'slug', 'image', 'text', 'description', 'date', 'type', 'category_id', 'posted'];
 
-    function category(){
+    function category()
+    {
         return $this->belongsTo(Category::class);
     }
 
-    function tags(){
+    function tags()
+    {
         return $this->morphedByMany(Tag::class, 'taggables');
     }
 
-    function getImage_URL(){
-        return URL::asset('images/posts/' . $this->image);
+    function getImageURL()
+    {
+        return URL::asset("images/post/" . $this->image);
     }
 }
