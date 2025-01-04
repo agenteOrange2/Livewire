@@ -2,20 +2,21 @@
     <div class="container">
         <x-action-message on="deleted">
             <div class="box-action-message">
-                {{__('Deleted post success')}}
+                {{ __('Deleted post success') }}
             </div>
         </x-action-message>
 
-         @slot('header')
-             {{__('CRUD Post')}}
-         @endslot
 
-         <x-card>
+        @slot('header')
+            {{ __('CRUD Post') }}
+        @endslot
+
+        <x-card>
             @slot('title')
                 List
             @endslot
 
-            <a href="{{route('d-post-create')}}" class="btn-secondary mb-3">Create</a>
+            <a class="btn-secondary mb-3" href="{{ route('d-post-create') }}">Create</a>
 
             <table class="table w-full border">
                 <thead class="text-left bg-gray-100">
@@ -43,7 +44,6 @@
                         </th>
                     </tr>
                 </thead>
-
                 <tbody>
                     @foreach ($posts as $p)
                         <tr class="border-b">
@@ -66,21 +66,22 @@
                                 {{ $p->category->title }}
                             </td>
                             <td class="p-2">
-                                <a href="{{route('d-post-edit', $p)}}">Edit</a>
-                                <x-danger-button wire:click="selectPostToDelete({{$p}})">
-                                    Delete
-                                </x-danger-button>
+                                <a href="{{ route('d-post-edit', $p) }}">Edit</a>
+                                <x-danger-button
+                                    wire:click='selectPostToDelete({{ $p }})'>Delete</x-danger-button>
                             </td>
                         </tr>
                     @endforeach
+
                 </tbody>
             </table>
-         </x-card>
+        </x-card>
 
-         <br>
-         {{$posts->links()}}
+        <br>
+        {{ $posts->links() }}
 
-         <x-confirmation-modal wire:model='confirmingDeletePost'>
+
+        <x-confirmation-modal wire:model='confirmingDeletePost'>
             @slot('title')
                 {{ __('Delete Post') }}
             @endslot
@@ -96,5 +97,6 @@
                 </x-danger-button>
             @endslot
         </x-confirmation-modal>
+
     </div>
 </div>

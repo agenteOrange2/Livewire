@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 255);
+            $table->string('title', 255);
             $table->string('slug', 255);
             $table->string('date')->default(Carbon::now());
             $table->string('image', 255)->nullable();
