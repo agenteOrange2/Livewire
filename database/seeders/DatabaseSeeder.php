@@ -18,7 +18,11 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name' => 'Elliot Alderson',
             'email' => 'frontend@kuiraweb.com',
+<<<<<<< HEAD
             'password' => bcrypt('Password'),
+=======
+            'password' => bcrypt('password'),
+>>>>>>> 84254cf7c75f8aab1a4ac073e5024dce07e0651a
         ]);
     }
 }
